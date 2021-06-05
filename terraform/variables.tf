@@ -9,37 +9,32 @@ variable "ami_id" {
   default     = "ami-0ff8a91507f77f867"
 }
 
-variable "instancetype" {
+variable "instance_type" {
   description = "Instance Typebe used for Instance "
   default     = "t2.micro"
 }
 
-variable "subnetid" {
+variable "subnet_id" {
   description = "Subnet ID to be used for Instance "
   default     = "subnet-41d6541d"
 }
 
 variable "AppName" {
   description = "Application Name"
-  default     = "Webserver-Host"
+  default     = "HortonWorksSandboxWebServer-Host"
 }
 
 variable "Env" {
-  description = "Application Name"
+  description = "Staging Environment Name"
   default     = "Dev"
 }
 
 variable "HostIp" {
   description = " Host IP to be allowed SSH for"
-  default     = "136.56.134.17/32"
+  default     = "103.21.166.191/32"
 }
 
 variable "PvtIp" {
-  description = " Host IP to be allowed SSH for"
+  description = "Pvt IP to be allowed SSH for"
   default     = "10.12.0.0/16"
-}
-
-variable "PvtIP" {
-  description = " Host IP to be allowed SSH for"
-  default     = "10.16.0.0/16"
 }

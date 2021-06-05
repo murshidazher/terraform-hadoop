@@ -1,18 +1,9 @@
-# Create key using awscli
-# aws ec2 create-key-pair --key-name nginx --query 'KeyMaterial' --output text >nginx.pem
-
-
-provider "aws" {
-  region = "${var.region}"
-}
-
 # EC2 resource
-
 resource "aws_instance" "web-nginx" {
   ami                    = "${var.ami_id}"
-  instance_type          = "${var.instancetype}"
+  instance_type          = "${var.instance_type}"
   key_name               = "nginx"
-  subnet_id              = "${var.subnetid}"
+  subnet_id              = "${var.subnet_id}"
   vpc_security_group_ids = ["${aws_security_group.webnginx.id}"]
 
   user_data = "${file("user-data.sh")}" # also known as provisioners
