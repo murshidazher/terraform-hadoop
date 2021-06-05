@@ -1,15 +1,20 @@
+locals {
+  stage_app_name  = "${var.AppName}-${terraform.workspace}"
+}
+
 # EC2 resource
 resource "aws_instance" "web-nginx" {
-  ami                    = "${var.ami_id}"
-  instance_type          = "${var.instance_type}"
-  key_name               = "nginx"
-  subnet_id              = "${var.subnet_id}"
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  key_name               = var.KeyPairName
+  subnet_id              = var.subnet_id
   vpc_security_group_ids = ["${aws_security_group.webnginx.id}"]
 
-  user_data = "${file("user-data.sh")}" # also known as provisioners
-  tags {
-    Name = "${var.AppName}"
-    Env  = "${var.Env}"
+  user_data = file("user-data.sh") # also known as provisioners
+
+  tags = {
+    Name = local.stage_app_name
+    Environment = "${terraform.workspace}"
   }
 
   lifecycle {

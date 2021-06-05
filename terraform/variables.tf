@@ -1,12 +1,12 @@
 # Variables TF File
 variable "region" {
-  description = "AWS Region "
+  description = "AWS Region"
   default     = "us-east-1"
 }
 
 variable "ami_id" {
   description = "AMI ID to be used for Instance "
-  default     = "ami-0ff8a91507f77f867"
+  default     = "ami-0d5eff06f840b45e9"
 }
 
 variable "instance_type" {
@@ -16,17 +16,12 @@ variable "instance_type" {
 
 variable "subnet_id" {
   description = "Subnet ID to be used for Instance "
-  default     = "subnet-41d6541d"
+  default     = "subnet-b4e9fdd3"
 }
 
 variable "AppName" {
   description = "Application Name"
-  default     = "HortonWorksSandboxWebServer-Host"
-}
-
-variable "Env" {
-  description = "Staging Environment Name"
-  default     = "Dev"
+  default     = "HortonWorksSandboxWebServer"
 }
 
 variable "HostIp" {
@@ -36,5 +31,10 @@ variable "HostIp" {
 
 variable "PvtIp" {
   description = "Pvt IP to be allowed SSH for"
-  default     = "10.12.0.0/16"
+  default     = "172.31.0.0/16"
+}
+
+variable "KeyPairName" {
+  description = "EC2 instance key pair name"
+  default     = "hwsndbx"
 }
