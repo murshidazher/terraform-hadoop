@@ -88,6 +88,16 @@ So to connect using ssh we need a permission of `400` but by default it will be 
 > ssh -i ./scripts/hwsndbx.pem centos@<output_instance_ip>
 ```
 
+Install `HDP` through docker,
+
+```sh
+> docker info
+> cd HDP-Sandbox-AWS/HDP_2.6.5
+> bash docker-deploy-hdp265.sh
+```
+
+After it finishes, access Ambari through `http://your-ec2-public-ip:8080/`
+
 ## 💣 Destroy
 
 ```sh
