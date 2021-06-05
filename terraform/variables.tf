@@ -6,7 +6,7 @@ variable "region" {
 
 variable "ami_id" {
   description = "AMI ID to be used for Instance "
-  default     = "ami-0d5eff06f840b45e9"
+  default     = "ami-011939b19c6bd1492"
 }
 
 variable "instance_type" {

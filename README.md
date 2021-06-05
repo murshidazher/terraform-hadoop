@@ -2,11 +2,15 @@
 
 > A hadoop terraform setup for setting up big data analytics server instance. 🔥🔥🔥
 
+- Installation guide can be found [here](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit).
+
 ## Table of Contents
 
 - [terraform-hadoop](#terraform-hadoop)
   - [Table of Contents](#table-of-contents)
   - [📚 Installing / Getting started](#-installing--getting-started)
+    - [⚙️ Configure](#️-configure)
+    - [🏁 Initialize](#-initialize)
     - [📦 Workspaces](#-workspaces)
     - [💥 Provisioning](#-provisioning)
   - [🚀 Usage](#-usage)
@@ -17,11 +21,26 @@
 
 > ⚠️ Before running the scripts, create a remote s3 bucket to store the terraform state with the name of `javahome-tf-1212`. `AWS_PROFILE=<username>` is the local aws profile credentials you've configured if you don't use global credentials.
 
-To get the public ip address and replace it in the variables folder,
+### ⚙️ Configure
+
+CentOS publishes their AMI product codes to their [wiki](https://wiki.centos.org/Cloud/AWS) and to get their `ami_id`,
+
+```sh
+> aws ec2 describe-images \
+    --owners 'aws-marketplace' \
+    --filters 'Name=product-code,Values=cvugziknvmxgqna9noibqnnsy' \
+    --query 'sort_by(Images, &CreationDate)[-1].[ImageId]' \
+    --output 'text' \
+    --region us-east-1
+```
+
+To configure the public ip address, replace the `HostIp` environment variable found in `env > dev.tfvars | prod.tfvars`,
 
 ```sh
 > dig +short myip.opendns.com @resolver1.opendns.com
 ```
+
+### 🏁 Initialize
 
 Initialize terraform
 
@@ -76,7 +95,7 @@ So to connect using ssh we need a permission of `400` but by default it will be 
 ```sh
 > ls -la # to see the permission of the pem file
 > chmod 400 ./scripts/hwsndbx.pem
-> ssh -i ./scripts/hwsndbx.pem ec2-user@<output_instance_ip>
+> ssh -i ./scripts/hwsndbx.pem centos@<output_instance_ip>
 ```
 
 ## 💣 Destroy
