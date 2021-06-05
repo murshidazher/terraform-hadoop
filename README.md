@@ -2,7 +2,8 @@
 
 > A hadoop terraform setup for setting up big data analytics server instance. 🔥🔥🔥
 
-- Installation guide can be found [here](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit).
+- Installation guide for [single cluster](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS) 
+- Installation guide can be found [here](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit) for multiple cluster nodes.
 
 ## Table of Contents
 
@@ -22,17 +23,6 @@
 > ⚠️ Before running the scripts, create a remote s3 bucket to store the terraform state with the name of `javahome-tf-1212`. `AWS_PROFILE=<username>` is the local aws profile credentials you've configured if you don't use global credentials.
 
 ### ⚙️ Configure
-
-CentOS publishes their AMI product codes to their [wiki](https://wiki.centos.org/Cloud/AWS) and to get their `ami_id`,
-
-```sh
-> aws ec2 describe-images \
-    --owners 'aws-marketplace' \
-    --filters 'Name=product-code,Values=cvugziknvmxgqna9noibqnnsy' \
-    --query 'sort_by(Images, &CreationDate)[-1].[ImageId]' \
-    --output 'text' \
-    --region us-east-1
-```
 
 To configure the public ip address, replace the `HostIp` environment variable found in `env > dev.tfvars | prod.tfvars`,
 
