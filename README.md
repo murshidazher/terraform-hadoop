@@ -38,6 +38,8 @@ Create AWS keypair that will be used to login into AWS instance,
 
 ### Workspaces
 
+> 💡 Either configure the global `aws` profile or append each terraform command with `AWS_PROFILE=<username>`
+
 ```sh
 > terraform workspace list # created at terraform init
 ```
@@ -58,17 +60,12 @@ If we need to provision the resources in the dev workspaces we need to first sel
 
 ### Provisioning
 
-Apply terraform script
+Apply terraform script,
 
 ```sh
-> terraform plan 
-> terraform apply
-```
-
-We can also use any filename with the `tfvars` extension to pass environment and multiple values,
-
-```sh
-> terraform apply -var-file=dev.tfvars
+> terraform workspace select dev
+> terraform plan -var-file=./env/dev.tfvars
+> terraform apply -auto-approve -var-file=./env/dev.tfvars 
 ```
 
 ## Usage
@@ -77,8 +74,8 @@ So to connect using ssh we need a permission of `400` but by default it will be 
 
 ```sh
 > ls -la # to see the permission of the pem file
-> chmod 400 hwsndbx.pem
-> ssh -i hwsndbx.pem ec2-user@<output_instance_ip>
+> chmod 400 ./scripts/hwsndbx.pem
+> AWS_PROFILE=murshid ssh -i ./scripts/hwsndbx.pem ec2-user@<output_instance_ip>
 ```
 
 ## Destroy
