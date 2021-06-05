@@ -3,14 +3,14 @@ locals {
 }
 
 # EC2 resource
-resource "aws_instance" "web-nginx" {
+resource "aws_instance" "web-hwsdbx" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.KeyPairName
   subnet_id              = var.subnet_id
-  vpc_security_group_ids = ["${aws_security_group.webnginx.id}"]
+  vpc_security_group_ids = ["${aws_security_group.webhwsdbx.id}"]
 
-  user_data = file("user-data.sh") # also known as provisioners
+  user_data = file("./scripts/user-data.sh") # also known as provisioners
 
   tags = {
     Name        = local.stage_app_name
@@ -23,9 +23,9 @@ resource "aws_instance" "web-nginx" {
 }
 
 # Adding Security Group for our Instance :
-resource "aws_security_group" "webnginx" {
-  name        = "web-nginx"
-  description = "Nginx Web Server Security Group"
+resource "aws_security_group" "webhwsdbx" {
+  name        = "web-hwsdbx"
+  description = "HortonWorks Sandbox Web Server Security Group"
 
   ingress {
     description = "Allow SSH"
@@ -33,7 +33,6 @@ resource "aws_security_group" "webnginx" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["${var.HostIp}"]
-    # cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -41,7 +40,6 @@ resource "aws_security_group" "webnginx" {
     to_port   = 80
     protocol  = "tcp"
     cidr_blocks = ["${var.HostIp}"]
-    # cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -49,7 +47,6 @@ resource "aws_security_group" "webnginx" {
     to_port   = 22
     protocol  = "tcp"
     cidr_blocks = ["${var.PvtIp}"]
-    # cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

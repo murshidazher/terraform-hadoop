@@ -1,0 +1,5 @@
+subnet_id = "subnet-b4e9fdd3"
+AppName = "HortonWorksSandboxWebServer"
+HostIp = "103.21.164.131/32"
+PvtIp = "10.12.0.0/16"
+KeyPairName = "hwsndbx"
