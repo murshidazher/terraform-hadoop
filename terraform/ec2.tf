@@ -1,5 +1,5 @@
 locals {
-  stage_app_name  = "${var.AppName}-${terraform.workspace}"
+  stage_app_name = "${var.AppName}-${terraform.workspace}"
 }
 
 # EC2 resource
@@ -13,7 +13,7 @@ resource "aws_instance" "web-nginx" {
   user_data = file("user-data.sh") # also known as provisioners
 
   tags = {
-    Name = local.stage_app_name
+    Name        = local.stage_app_name
     Environment = "${terraform.workspace}"
   }
 
@@ -28,24 +28,28 @@ resource "aws_security_group" "webnginx" {
   description = "Nginx Web Server Security Group"
 
   ingress {
+    description = "Allow SSH"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["${var.HostIp}"]
+    # cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
+    from_port = 80
+    to_port   = 80
+    protocol  = "tcp"
     cidr_blocks = ["${var.HostIp}"]
+    # cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
     cidr_blocks = ["${var.PvtIp}"]
+    # cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {

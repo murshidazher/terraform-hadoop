@@ -26,12 +26,12 @@ variable "AppName" {
 
 variable "HostIp" {
   description = " Host IP to be allowed SSH for"
-  default     = "103.21.166.191/32"
+  default     = "103.21.164.131/32"
 }
 
 variable "PvtIp" {
   description = "Pvt IP to be allowed SSH for"
-  default     = "172.31.0.0/16"
+  default     = "10.12.0.0/16"
 }
 
 variable "KeyPairName" {
