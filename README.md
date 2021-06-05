@@ -2,8 +2,8 @@
 
 > A hadoop terraform setup for setting up big data analytics server instance. 🔥🔥🔥
 
-- Installation guide for [single cluster](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS) 
-- Installation guide can be found [here](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit) for multiple cluster nodes.
+- Installation guide for [single cluster](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS).
+- Installation guide for [multiple cluster nodes](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit).
 
 ## Table of Contents
 
