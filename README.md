@@ -96,7 +96,8 @@ Install `HDP` through docker,
 > bash docker-deploy-hdp265.sh
 ```
 
-After it finishes, access Ambari through `http://your-ec2-public-ip:8080/`
+- After it finishes, access Ambari through `http://your-ec2-public-ip:8080/`. 
+- The default Ambari credential is `raj_ops`:`raj_ops` and `maria_dev`: `maria_dev` . The default AmbariShell login credential is `root`:`hadoop`.
 
 ## 💣 Destroy
 
