@@ -26,7 +26,7 @@ variable "volume_type" {
 
 variable "volume_size" {
   description = "EC2 storage volume size"
-  default     = 50
+  default     = 80
 }
 
 variable "delete_storage_on_termination" {
