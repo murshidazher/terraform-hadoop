@@ -1,6 +1,6 @@
 # [terraform-hdp](https://github.com/murshidazher/terraform-hadoop)
 
-> A hadoop terraform setup for setting up big data analytics server instance. 🔥🔥🔥
+> A terraform setup for setting up hdp's big data analytics server instance in aws. 🔥🔥🔥
 
 ## Table of Contents
 
