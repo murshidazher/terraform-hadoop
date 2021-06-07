@@ -1,4 +1,4 @@
-# [terraform-hdp](https://github.com/murshidazher/terraform-hadoop)
+# [terraform-hdp](https://github.com/murshidazher/terraform-hdp)
 
 > A terraform setup for setting up hdp's big data analytics server instance in aws. 🔥🔥🔥
 
