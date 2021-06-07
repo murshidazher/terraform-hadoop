@@ -122,10 +122,10 @@ To restart the containers,
 
 ### Add Hosts Ip to Mac
 
-To add `hostip` to the mac to use as a domain name locally,
+To add `hostip` to the mac to use as a domain name locally, to save and exit out of nano editor `ctrl + o` > `enter` > `ctrl + x`
 
 ```sh
-> sudo nano /etc/hosts # add the ip and map to a host
+> sudo nano /etc/hosts # add the ip and map to a host 
 > sudo killall -HUP mDNSResponder # flush DNS cache
 ```
 
