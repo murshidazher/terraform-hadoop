@@ -21,7 +21,7 @@
 
 ## 📚 Installing / Getting started
 
-> ⚠️ Before running the scripts, create a remote s3 bucket to store the terraform state with the name of `javahome-tf-1212`. `AWS_PROFILE=<username>` is the local aws profile credentials you've configured if you don't use global credentials.
+> ⚠️ Before running the scripts, create a remote s3 bucket to store the terraform state with the name of `javahome-tf-1212` or any-other name. `AWS_PROFILE=<username>` is the local aws profile credentials you've configured if you don't use global credentials.
 
 ### ⚙️ Configure
 
