@@ -2,12 +2,6 @@
 
 > A hadoop terraform setup for setting up big data analytics server instance. 🔥🔥🔥
 
-- Installation guide for [single cluster](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS).
-- Installation guide for [multiple cluster nodes](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit).
-- To increase the [storage instance type](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs-ephemeral-and-root-block-devices).
-- [Maven and Java setup](https://linuxize.com/post/how-to-install-apache-maven-on-centos-7/)
-- [DDP + Ambari 2.7.5 CentOS7](https://github.com/steven-matison/dfhz_ddp_mpack).
-
 ## Table of Contents
 
 - [terraform-hadoop](#terraform-hadoop)
@@ -18,9 +12,11 @@
     - [📦 Workspaces](#-workspaces)
     - [💥 Provisioning](#-provisioning)
   - [🚀 Usage](#-usage)
+  - [Basic docker debug commands](#basic-docker-debug-commands)
     - [Add Hosts Ip to Mac](#add-hosts-ip-to-mac)
     - [MySQL](#mysql)
   - [💣 Destroy](#-destroy)
+  - [References](#references)
   - [License](#license)
 
 ## 📚 Installing / Getting started
@@ -97,7 +93,7 @@ Install `HDP` through docker,
 
 ```sh
 > docker info
-> cd ../../HDP-Sandbox-AWS/HDP_2.6.5
+> cd ../../hdp-docker-sandbox/HDP_2.6.5
 > sudo bash docker-deploy-hdp265.sh
 > docker ps
 > docker ps -a
@@ -106,27 +102,38 @@ Install `HDP` through docker,
 To restart the containers,
 
 ```sh
-> docker stop $(docker ps -a -q) # to stop all containers
-> docker rm $(docker ps -a -q) 
-> sudo bash docker-deploy-hdp265.sh
+> cd hdp-docker-sandbox
+> sudo bash restart_docker.sh
 ```
 
-- After it finishes, access Ambari through `http://your-ec2-public-ip:8080/`. 
+- After it finishes, access Ambari through `http://your-ec2-public-ip:8080/`.
 - The default Ambari credential is `raj_ops`:`raj_ops` and `maria_dev`: `maria_dev` . The default AmbariShell login credential is `root`:`hadoop`.
+
+## Basic docker debug commands
 
 ```sh
 > sudo docker images
 > sudo service docker restart
 > sudo service docker status
+> docker exec -it 9d5c260ff545 /bin/bash
+> ambari-agent status
+> ambari-agent start # if stopped start
+> ambari-server restart
 ```
 
 ### Add Hosts Ip to Mac
 
-To add `hostip` to the mac to use as a domain name locally, to save and exit out of nano editor `ctrl + o` > `enter` > `ctrl + x`
+> 💡 `C:\Windows\System32\drivers\etc\hosts` on Windows or `/etc/hosts `on a MacOSX
+
+In case you want a CNAME, you can add this line to your hosts file. Add `hostip` to the mac to use as a domain name locally, to save and exit out of nano editor `ctrl + o` > `enter` > `ctrl + x`
 
 ```sh
 > sudo nano /etc/hosts # add the ip and map to a host 
 > sudo killall -HUP mDNSResponder # flush DNS cache
+```
+
+```txt
+127.0.0.1 sandbox-hdp.hortonworks.com
 ```
 
 ### MySQL
@@ -138,6 +145,14 @@ To add `hostip` to the mac to use as a domain name locally, to save and exit out
 ```sh
 > terraform destroy -auto-approve
 ```
+
+## References
+
+- Installation guide for [single cluster](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS).
+- Installation guide for [multiple cluster nodes](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit).
+- To increase the [storage instance type](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs-ephemeral-and-root-block-devices).
+- [Maven and Java setup](https://linuxize.com/post/how-to-install-apache-maven-on-centos-7/)
+- [DDP + Ambari 2.7.5 CentOS7](https://github.com/steven-matison/dfhz_ddp_mpack).
 
 ## License
 
