@@ -4,6 +4,9 @@
 
 - Installation guide for [single cluster](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS).
 - Installation guide for [multiple cluster nodes](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit).
+- To increase the [storage instance type](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs-ephemeral-and-root-block-devices).
+- [Maven and Java setup](https://linuxize.com/post/how-to-install-apache-maven-on-centos-7/)
+- [DDP + Ambari 2.7.5 CentOS7](https://github.com/steven-matison/dfhz_ddp_mpack).
 
 ## Table of Contents
 
@@ -15,6 +18,7 @@
     - [📦 Workspaces](#-workspaces)
     - [💥 Provisioning](#-provisioning)
   - [🚀 Usage](#-usage)
+    - [MySQL](#mysql)
   - [💣 Destroy](#-destroy)
   - [License](#license)
 
@@ -85,24 +89,44 @@ So to connect using ssh we need a permission of `400` but by default it will be 
 ```sh
 > ls -la # to see the permission of the pem file
 > chmod 400 ./scripts/hwsndbx.pem
-> ssh -i ./scripts/hwsndbx.pem centos@<output_instance_ip>
+> ssh -i ./scripts/hwsndbx.pem ec2-user@<output_instance_ip>
 ```
 
 Install `HDP` through docker,
 
 ```sh
 > docker info
-> cd HDP-Sandbox-AWS/HDP_2.6.5
-> bash docker-deploy-hdp265.sh
+> cd ../../HDP-Sandbox-AWS/HDP_2.6.5
+> sudo bash docker-deploy-hdp265.sh
+> docker ps
+> docker ps -a
+```
+
+To restart the containers,
+
+```sh
+> docker stop $(docker ps -a -q) # to stop all containers
+> docker rm $(docker ps -a -q) 
+> sudo bash docker-deploy-hdp265.sh
 ```
 
 - After it finishes, access Ambari through `http://your-ec2-public-ip:8080/`. 
 - The default Ambari credential is `raj_ops`:`raj_ops` and `maria_dev`: `maria_dev` . The default AmbariShell login credential is `root`:`hadoop`.
 
+```sh
+> sudo docker images
+> sudo service docker restart
+> sudo service docker status
+```
+
+### MySQL
+
+- Username `root` and password `root`
+
 ## 💣 Destroy
 
 ```sh
-> terraform destroy
+> terraform destroy -auto-approve
 ```
 
 ## License

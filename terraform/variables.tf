@@ -11,13 +11,30 @@ variable "ami_id" {
 
 variable "instance_type" {
   description = "Instance Typebe used for Instance "
-  default     = "t2.micro"
+  default     = "t2.xlarge"
 }
 
 variable "subnet_id" {
   description = "Subnet ID to be used for Instance "
   default     = "subnet-b4e9fdd3"
 }
+
+variable "volume_type" {
+  description = "EC2 storage volume type"
+  default     = "gp2" # gp2 | standard
+}
+
+variable "volume_size" {
+  description = "EC2 storage volume size"
+  default     = 50
+}
+
+variable "delete_storage_on_termination" {
+  description = "Delete storage on termination"
+  default     = true
+}
+
+
 
 variable "AppName" {
   description = "Application Name"
@@ -26,7 +43,7 @@ variable "AppName" {
 
 variable "HostIp" {
   description = " Host IP to be allowed SSH for"
-  default     = "103.21.164.131/32"
+  default     = "112.134.135.66/32"
 }
 
 variable "PvtIp" {
