@@ -18,6 +18,7 @@
     - [📦 Workspaces](#-workspaces)
     - [💥 Provisioning](#-provisioning)
   - [🚀 Usage](#-usage)
+    - [Add Hosts Ip to Mac](#add-hosts-ip-to-mac)
     - [MySQL](#mysql)
   - [💣 Destroy](#-destroy)
   - [License](#license)
@@ -117,6 +118,15 @@ To restart the containers,
 > sudo docker images
 > sudo service docker restart
 > sudo service docker status
+```
+
+### Add Hosts Ip to Mac
+
+To add `hostip` to the mac to use as a domain name locally,
+
+```sh
+> sudo nano /etc/hosts # add the ip and map to a host
+> sudo killall -HUP mDNSResponder # flush DNS cache
 ```
 
 ### MySQL
