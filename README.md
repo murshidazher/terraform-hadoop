@@ -12,7 +12,8 @@
     - [📦 Workspaces](#-workspaces)
     - [💥 Provisioning](#-provisioning)
   - [🚀 Usage](#-usage)
-  - [Basic docker debug commands](#basic-docker-debug-commands)
+  - [Basic commands](#basic-commands)
+    - [Docker troubleshooting](#docker-troubleshooting)
     - [Add Hosts Ip to Mac](#add-hosts-ip-to-mac)
     - [MySQL](#mysql)
   - [💣 Destroy](#-destroy)
@@ -109,7 +110,9 @@ To restart the containers,
 - After it finishes, access Ambari through `http://your-ec2-public-ip:8080/`.
 - The default Ambari credential is `raj_ops`:`raj_ops` and `maria_dev`: `maria_dev` . The default AmbariShell login credential is `root`:`hadoop`.
 
-## Basic docker debug commands
+## Basic commands
+
+### Docker troubleshooting
 
 ```sh
 > sudo docker images
