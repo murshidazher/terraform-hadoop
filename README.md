@@ -30,7 +30,7 @@
 To configure the public ip address, replace the `HostIp` environment variable found in `env > dev.tfvars | prod.tfvars`,
 
 ```sh
-> dig +short myip.opendns.com @resolver1.opendns.com
+> curl https://checkip.amazonaws.com
 ```
 
 ### 🏁 Initialize
