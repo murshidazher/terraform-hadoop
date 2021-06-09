@@ -14,6 +14,7 @@
   - [🚀 Usage](#-usage)
   - [Basic commands](#basic-commands)
     - [Docker troubleshooting](#docker-troubleshooting)
+      - [Sandbox Bash](#sandbox-bash)
     - [Add Hosts Ip to Mac](#add-hosts-ip-to-mac)
     - [MySQL](#mysql)
   - [💣 Destroy](#-destroy)
@@ -118,7 +119,14 @@ To restart the containers,
 > sudo docker images
 > sudo service docker restart
 > sudo service docker status
-> docker exec -it 9d5c260ff545 /bin/bash
+```
+
+#### Sandbox Bash
+
+To peek into the docker sandbox,
+
+```sh
+> docker exec -it <docker-sandbox-image-id> /bin/bash
 > ambari-agent status
 > ambari-agent start # if stopped start
 > ambari-server restart
