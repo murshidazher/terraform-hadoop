@@ -152,8 +152,15 @@ HortonWorks doesnt come with lot of resources out-of-the-box to work with python
 Example data files and scripts to play with,
 
 ```sh
+> sudo su - maria_dev
 > wget http://media.sundog-soft.com/hadoop/ml-100k/u.data
 > wget http://media.sundog-soft.com/hadoop/RatingsBreakdown.py
+> hadoop fs -copyFromLocal u.data /user/maria_dev/ml-100k/u.data
+> python RatingsBreakdown.p u.data
+> python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar u.data #mrjob manually copies the file to hdfs temp location and executes it
+> hostname -I | awk '{print $1}' # get the ip
+> python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar hdfs://172.18.0.2:8020/user/maria_dev/ml-100k/u.data 
+> python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar hdfs:///user/maria_dev/ml-100k/u.data 
 ```
 
 

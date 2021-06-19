@@ -43,7 +43,7 @@ variable "AppName" {
 
 variable "HostIp" {
   description = " Host IP to be allowed SSH for"
-  default     = "103.247.48.209/32"
+  default     = "203.189.185.187/32"
 }
 
 variable "PvtIp" {
