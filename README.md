@@ -15,6 +15,9 @@
   - [Basic commands](#basic-commands)
     - [Docker troubleshooting](#docker-troubleshooting)
       - [Sandbox Bash](#sandbox-bash)
+    - [Setup Python](#setup-python)
+      - [If python 3.6 needed](#if-python-36-needed)
+  - [Security](#security)
     - [Add Hosts Ip to Mac](#add-hosts-ip-to-mac)
     - [MySQL](#mysql)
   - [💣 Destroy](#-destroy)
@@ -130,6 +133,58 @@ To peek into the docker sandbox,
 > ambari-agent status
 > ambari-agent start # if stopped start
 > ambari-server restart
+```
+
+### Setup Python
+
+HortonWorks doesnt come with lot of resources out-of-the-box to work with python,
+
+```sh
+> sudo su -
+> yum install python-pip -y
+> pip install google-api-python-client==1.6.4
+# > curl https://bootstrap.pypa.io/pip/2.7/get-pip.py | python
+# > pip install --ignore-installed pyparsing
+> pip install mrjob==0.5.11 #MRJob
+> yum install nano -y
+```
+
+Example data files and scripts to play with,
+
+```sh
+> wget http://media.sundog-soft.com/hadoop/ml-100k/u.data
+> wget http://media.sundog-soft.com/hadoop/RatingsBreakdown.py
+```
+
+
+#### If python 3.6 needed
+
+```sh
+> yum install python36
+> sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+> sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
+> sudo update-alternatives  --set python /usr/bin/python3.6
+
+```
+
+Or just change the symbolic link,
+
+```sh
+> cd /usr/bin
+> ls -lrth python*
+> unlink python
+> ln -s /usr/bin/python3.6 python
+> python --version
+```
+
+## Security
+
+Change the `ambari` password once you create the instance,
+
+```sh
+> docker exec -it <docker-sandbox-image-id> /bin/bash
+> ambari-admin-password-reset
+> ambari-agent restart
 ```
 
 ### Add Hosts Ip to Mac
