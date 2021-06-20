@@ -5,7 +5,6 @@ locals {
 
 # creating elastic ip to have a stable public ip to connect to instance
 resource "aws_eip" "eip_web_hwsdbx" {
-  name     = local.stage_eip_name
   instance = aws_instance.web_hwsdbx.id
   vpc      = true
 
