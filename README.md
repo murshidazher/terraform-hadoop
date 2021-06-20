@@ -229,6 +229,7 @@ In case you want a CNAME, you can add this line to your hosts file. Add `hostip`
 - [Starting and stopping ambari services using CURL command](https://www.zylk.net/en/web-2-0/blog/-/blogs/starting-services-via-ambari-rest-api)
 - [Look into terraform local-exec for stopping and starting server instances](https://stackoverflow.com/questions/57158310/how-to-restart-ec2-instance-using-terraform-without-destroying-them)
 - [Ambari REST Api to restart all services](https://community.cloudera.com/t5/Support-Questions/Ambari-REST-API-to-restart-all-services/td-p/172172)
+- [Ambari REST Api commands](https://community.cloudera.com/t5/Community-Articles/Ambari-Admin-Utility-Part-1/ta-p/246258)
 
 ## License
 

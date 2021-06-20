@@ -70,8 +70,8 @@ ssh root@localhost -p 2222 <<!
 hadoop
 !
 ambari-admin-password-reset <<!
-adminpasword
-adminpasword
+adminpassword
+adminpassword
 !
 ambari-agent restart
 
@@ -102,22 +102,21 @@ ambari-agent restart
 logout
 exit
 
-# set AMBARI_ADMIN_USER="admin", AMBARI_ADMIN_PASSWORD, AMBARI_HOST="localhost", CLUSTER_NAME
-# set these as global variables
-export SERVICE=ZEPPELIN
-export PASSWORD=admin
-export AMBARI_HOST=localhost
+# set shell integrations for ambari
+sudo su -
+cd /etc/$LOCAL_REPO/
+cat ./shell_integration.sh | sudo tee -a ~/.bashrc # add sources to root
 
-# detect name of cluster
-# sent it to the bashrc profile to be detected
-output=$(curl -u $AMBARI_ADMIN_USER:$AMBARI_ADMIN_PASSWORD -i -H 'X-Requested-By: ambari' http://$AMBARI_HOST:8080/api/v1/clusters)
+chmod +x ~/.bashrc
+source ~/.bashrc
 
-CLUSTER_NAME=$(echo $output | sed -n 's/.*"cluster_name" : "\([^\"]*\)".*/\1/p')
+cat ./shell_integration.sh | sudo tee -a /etc/.bashrc # add sources to global
 
-echo $CLUSTER_NAME
+chmod +x /etc/.bashrc
+source /etc/.bashrc
 
 # start all ambari services
-# https://github.com/crazyadmins/useful-scripts/blob/master/ambari/ambari-admin.sh
 cd /etc/$LOCAL_REPO/$HADOOP_VERSION
+startall # start all services
 
 --//
