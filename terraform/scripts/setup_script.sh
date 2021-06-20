@@ -65,10 +65,10 @@ cd $HADOOP_VERSION
 restart_stale_container "hortonworks/sandbox-hdp" "hortonworks/sandbox-proxy"
 
 # login to sandbox hdp
-# docker exec -it sandbox-hdp /bin/bash
-ssh root@localhost -p 2222 <<!
-hadoop
-!
+# ssh root@localhost -p 2222 <<!
+# hadoop
+# !
+docker exec -it sandbox-hdp /bin/bash
 ambari-admin-password-reset <<!
 adminpassword
 adminpassword
