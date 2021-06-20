@@ -110,7 +110,7 @@ To restart the containers,
 > sudo bash restart_docker.sh
 ```
 
-- After it finishes, access Ambari through `http://your-ec2-public-ip:8080/`.
+- After it finishes, access Ambari through `http://elastic-public-ip:8080/`.
 - The default Ambari credential is `raj_ops`:`raj_ops` and `maria_dev`: `maria_dev` . The default AmbariShell login credential is `root`:`hadoop`.
 
 ## Basic commands
