@@ -9,6 +9,11 @@ variable "ami_id" {
   default     = "ami-0d5eff06f840b45e9"
 }
 
+variable "ami_type" {
+  description = "Type of ami instance"
+  default     = "linux-amazon"
+}
+
 variable "instance_type" {
   description = "Instance Typebe used for Instance "
   default     = "t2.xlarge"
@@ -33,6 +38,24 @@ variable "delete_storage_on_termination" {
   description = "Delete storage on termination"
   default     = true
 }
+
+
+variable "aws_instance_connection_username" {
+  description = "Default usernames of ec2 instaces"
+  type        = map(string)
+
+  default = {
+    linux-amazon = "ec2-user"
+    ubuntu       = "ubuntu"
+  }
+}
+
+variable "aws_instance_connection_password" {
+  description = "Default password of ec2 instace"
+  default     = ""
+}
+
+
 
 
 

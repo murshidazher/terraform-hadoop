@@ -10,4 +10,9 @@ sudo yum install -y docker
 sudo service docker start
 sudo usermod -a -G docker ec2-user
 
-git clone https://github.com/murshidazher/hdp-docker-sandbox.git
+# write as docker setup complete
+sudo touch /etc/.user-data-complete
+
+# restart
+sudo shutdown -r now
+# reboot

@@ -19,8 +19,7 @@
       - [If python 3.6 needed](#if-python-36-needed)
   - [Security](#security)
     - [Add Hosts Ip to Mac](#add-hosts-ip-to-mac)
-    - [MySQL](#mysql)
-  - [💣 Destroy](#-destroy)
+  - [Destroy](#destroy)
   - [References](#references)
   - [License](#license)
 
@@ -126,10 +125,13 @@ To restart the containers,
 
 #### Sandbox Bash
 
+> Read [cloudera hdp sandbox](https://www.cloudera.com/tutorials/learning-the-ropes-of-the-hdp-sandbox.html) and [apache ambari shell commands](https://cwiki.apache.org/confluence/display/AMBARI/Ambari+Shell) for more information.
+
 To peek into the docker sandbox,
 
 ```sh
 > docker exec -it <docker-sandbox-image-id> /bin/bash
+> ssh root@localhost -p 2222 # or you can use this with password hadoop
 > ambari-agent status
 > ambari-agent start # if stopped start
 > ambari-server restart
@@ -163,7 +165,6 @@ Example data files and scripts to play with,
 > python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar hdfs:///user/maria_dev/ml-100k/u.data 
 ```
 
-
 #### If python 3.6 needed
 
 ```sh
@@ -189,7 +190,7 @@ Or just change the symbolic link,
 Change the `ambari` password once you create the instance,
 
 ```sh
-> docker exec -it <docker-sandbox-image-id> /bin/bash
+> docker exec -it sandbox-hdp /bin/bash
 > ambari-admin-password-reset
 > ambari-agent restart
 ```
@@ -209,11 +210,7 @@ In case you want a CNAME, you can add this line to your hosts file. Add `hostip`
 127.0.0.1 sandbox-hdp.hortonworks.com
 ```
 
-### MySQL
-
-- Username `root` and password `root`
-
-## 💣 Destroy
+## Destroy
 
 ```sh
 > terraform destroy -auto-approve
@@ -226,6 +223,9 @@ In case you want a CNAME, you can add this line to your hosts file. Add `hostip`
 - To increase the [storage instance type](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs-ephemeral-and-root-block-devices).
 - [Maven and Java setup](https://linuxize.com/post/how-to-install-apache-maven-on-centos-7/)
 - [DDP + Ambari 2.7.5 CentOS7](https://github.com/steven-matison/dfhz_ddp_mpack).
+- [Starting and stopping ambari services using CURL command](https://www.zylk.net/en/web-2-0/blog/-/blogs/starting-services-via-ambari-rest-api)
+- [Look into terraform local-exec for stopping and starting server instances](https://stackoverflow.com/questions/57158310/how-to-restart-ec2-instance-using-terraform-without-destroying-them)
+- [Ambari REST Api to restart all services](https://community.cloudera.com/t5/Support-Questions/Ambari-REST-API-to-restart-all-services/td-p/172172)
 
 ## License
 

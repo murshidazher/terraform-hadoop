@@ -1,17 +1,21 @@
 locals {
   stage_app_name      = "${var.AppName}-${terraform.workspace}"
   storage_volume_name = "data-${var.AppName}-${terraform.workspace}"
+  connection_type     = "ssh"
+  default_username    = "ec2-user"
+  user_data_source = "./scripts/user_data.sh"
+  script_source       = "./scripts/setup_script.sh"
+  script_destination  = "/etc/setup_script.sh"
 }
 
 # EC2 resource
-resource "aws_instance" "web-hwsdbx" {
+resource "aws_instance" "web_hwsdbx" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
   key_name               = var.KeyPairName
   subnet_id              = var.subnet_id
-  vpc_security_group_ids = ["${aws_security_group.webhwsdbx.id}"]
-
-  user_data = file("./scripts/user-data.sh") # also known as provisioners
+  vpc_security_group_ids = ["${aws_security_group.sg_web_hwsdbx.id}"]
+  user_data = file(local.user_data_source)
 
   root_block_device {
     volume_type           = var.volume_type
@@ -29,60 +33,26 @@ resource "aws_instance" "web-hwsdbx" {
     Environment = "${terraform.workspace}"
   }
 
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-# Adding Security Group for our Instance :
-resource "aws_security_group" "webhwsdbx" {
-  name        = "web-hwsdbx"
-  description = "HortonWorks Sandbox Web Server Security Group"
-
-  ingress {
-    description = "Allow SSH"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["${var.HostIp}"]
-  }
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["${var.HostIp}"]
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["${var.PvtIp}"]
-  }
-
-  ingress {
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "tcp"
-    cidr_blocks = ["${var.HostIp}"]
-  }
-
-  ingress {
-    from_port   = 0
-    to_port     = 65535
-    protocol    = "tcp"
-    cidr_blocks = ["${var.PvtIp}"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
+  connection {
+    type     = local.connection_type
+    user     = lookup(var.aws_instance_connection_username, var.ami_type, local.default_username)
+    password = var.aws_instance_connection_password
+    host     = self.public_ip
   }
 
   lifecycle {
     create_before_destroy = true
+  }
+
+  provisioner "file" {
+    source      = local.script_source
+    destination = local.script_destination
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x ${local.script_destination}",
+      "bash ${local.script_destination} ${local.stage_app_name}"
+    ]
   }
 }
