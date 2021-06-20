@@ -6,12 +6,12 @@
 
 - [terraform-hdp](#terraform-hdp)
   - [Table of Contents](#table-of-contents)
-  - [📚 Installing / Getting started](#-installing--getting-started)
+  - [Installing / Getting started](#installing--getting-started)
     - [⚙️ Configure](#️-configure)
-    - [🏁 Initialize](#-initialize)
-    - [📦 Workspaces](#-workspaces)
-    - [💥 Provisioning](#-provisioning)
-  - [🚀 Usage](#-usage)
+    - [Initialize](#initialize)
+    - [Workspaces](#workspaces)
+    - [Provisioning](#provisioning)
+  - [Usage](#usage)
   - [Basic commands](#basic-commands)
     - [Docker troubleshooting](#docker-troubleshooting)
       - [Sandbox Bash](#sandbox-bash)
@@ -23,9 +23,12 @@
   - [References](#references)
   - [License](#license)
 
-## 📚 Installing / Getting started
+## Installing / Getting started
 
-> ⚠️ Before running the scripts, create a remote s3 bucket to store the terraform state with the name of `javahome-tf-1212` or any-other name. `AWS_PROFILE=<username>` is the local aws profile credentials you've configured if you don't use global credentials.
+> ⚠️ Before running the scripts, create a remote s3 bucket to store the terraform state.
+
+- By default, the name of the remote state bucket is `javahome-tf-1212`.
+- If you want to create your own bucket with any-other name, ensure that you replace the default remote bucket name mentioned in `state.tf`.
 
 ### ⚙️ Configure
 
@@ -35,7 +38,9 @@ To configure the public ip address, replace the `HostIp` environment variable fo
 > curl https://checkip.amazonaws.com
 ```
 
-### 🏁 Initialize
+### Initialize
+
+> :bulb:If you don't want to utilize global credentials, add `AWS PROFILE=username>` to each terraform and aws command given below.
 
 Initialize terraform
 
@@ -51,9 +56,7 @@ Create AWS keypair that will be used to login into AWS instance,
 > aws ec2 create-key-pair --key-name hwsndbx --query 'KeyMaterial' --output text > hwsndbx.pem
 ```
 
-### 📦 Workspaces
-
-> 💡 Either configure the global `aws` profile or append each terraform command with `AWS_PROFILE=<username>`
+### Workspaces
 
 ```sh
 > terraform workspace list # created at terraform init
@@ -73,7 +76,7 @@ If we need to provision the resources in the dev workspaces we need to first sel
 > terraform apply
 ```
 
-### 💥 Provisioning
+### Provisioning
 
 Apply terraform script,
 
@@ -83,7 +86,7 @@ Apply terraform script,
 > terraform apply -auto-approve -var-file=./env/dev.tfvars 
 ```
 
-## 🚀 Usage
+## Usage
 
 So to connect using ssh we need a permission of `400` but by default it will be `644`,
 
