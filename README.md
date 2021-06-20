@@ -7,7 +7,7 @@
 - [terraform-hdp](#terraform-hdp)
   - [Table of Contents](#table-of-contents)
   - [Installing / Getting started](#installing--getting-started)
-    - [⚙️ Configure](#️-configure)
+    - [Configure](#configure)
     - [Initialize](#initialize)
     - [Workspaces](#workspaces)
     - [Provisioning](#provisioning)
@@ -30,7 +30,7 @@
 - By default, the name of the remote state bucket is `javahome-tf-1212`.
 - If you want to create your own bucket with any-other name, ensure that you replace the default remote bucket name mentioned in `state.tf`.
 
-### ⚙️ Configure
+### Configure
 
 To configure the public ip address, replace the `HostIp` environment variable found in `env > dev.tfvars | prod.tfvars`,
 
