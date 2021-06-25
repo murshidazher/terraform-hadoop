@@ -1,5 +1,4 @@
 locals {
-  stage_app_name = "${var.AppName}-${terraform.workspace}"
   stage_eip_name = "eip-${local.stage_app_name}"
 }
 
