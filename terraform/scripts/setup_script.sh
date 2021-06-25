@@ -68,7 +68,7 @@ restart_stale_container "hortonworks/sandbox-hdp" "hortonworks/sandbox-proxy"
 # ssh root@localhost -p 2222 <<!
 # hadoop
 # !
-docker exec -it sandbox-hdp /bin/bash
+docker exec -it hortonworks/sandbox-hdp /bin/bash
 ambari-admin-password-reset <<!
 adminpassword
 adminpassword
