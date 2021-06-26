@@ -14,8 +14,10 @@ output "instance_public_dns" {
   value       = aws_instance.web_hwsdbx.public_dns
 }
 
-output "elastic_ip" {
-  description = "Elastic Ip attached to the instance"
-  value       = aws_eip_association.eip_assoc.public_ip
+output "hadoop_elastic_ip" {
+  description = "Hadoop elastic IP attached to the instance"
+  value       = aws_eip_association.eip_assoc_hadoop.public_ip
 }
+
+
 

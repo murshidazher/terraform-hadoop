@@ -1,8 +1,8 @@
 # vpn_access_server
 resource "aws_security_group" "sg_web" {
-  name        = "vpc_web"
+  name        = "sg_openvpn_web"
   description = "Security group for VPN access server"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = data.terraform_remote_state.vpc_remote_state.outputs.vpc_id
 
   tags = {
     Name = "sg-vpn-access-server"
