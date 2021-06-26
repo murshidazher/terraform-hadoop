@@ -69,8 +69,3 @@ variable "KeyPairName" {
   description = "EC2 instance key pair name"
   default     = "hwsndbx"
 }
-
-variable "MyHostIp" {
-  description = "Ip of my current personal computer for remote exec"
-  default     = "3.229.17.159"
-}
