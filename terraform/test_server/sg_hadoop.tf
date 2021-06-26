@@ -9,28 +9,28 @@ resource "aws_security_group" "sg_web_hwsdbx" {
     protocol    = "tcp"
     from_port   = 0
     to_port     = 65535
-    cidr_blocks = ["10.118.8.0/22"]
+    cidr_blocks = ["10.118.8.0/22", "${data.terraform_remote_state.openvpn_remote_state.outputs.openvpn_elastic_ip}/32"]
   }
 
   ingress {
     protocol    = "tcp"
     from_port   = 443
     to_port     = 443
-    cidr_blocks = ["10.118.8.0/22", "${var.MyHostIp}/32"]
+    cidr_blocks = ["10.118.8.0/22", "${data.terraform_remote_state.openvpn_remote_state.outputs.openvpn_elastic_ip}/32"]
   }
 
   ingress {
     protocol    = "tcp"
     from_port   = 80
     to_port     = 80
-    cidr_blocks = ["10.118.8.0/22", "${var.MyHostIp}/32"]
+    cidr_blocks = ["10.118.8.0/22", "${data.terraform_remote_state.openvpn_remote_state.outputs.openvpn_elastic_ip}/32"]
   }
 
   ingress {
     protocol    = "tcp"
     from_port   = 22
     to_port     = 22
-    cidr_blocks = ["10.118.8.0/22", "${var.MyHostIp}/32"]
+    cidr_blocks = ["10.118.8.0/22", "${data.terraform_remote_state.openvpn_remote_state.outputs.openvpn_elastic_ip}/32"]
   }
 
   egress {

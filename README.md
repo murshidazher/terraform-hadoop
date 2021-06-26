@@ -24,7 +24,7 @@
       - [If python 3.6 needed](#if-python-36-needed)
   - [Security](#security)
     - [Add Hosts Ip to Mac](#add-hosts-ip-to-mac)
-  - [Stop Instances](#stop-instances)
+  - [Pausing and Resuming Instances](#pausing-and-resuming-instances)
   - [Destroy](#destroy)
   - [References](#references)
   - [License](#license)
@@ -161,7 +161,7 @@ Login to your VPN access server GUI using the user `openvpn` and created on the 
 Next, we will provision HDP as a spot instance if you need it as a readily-available instance change directory to ``.
 
 ```sh
-> cd terraform/hdp_spot_instance
+> cd terraform/hdp_instance
 > terraform init
 > terraform plan
 > terraform apply
@@ -173,7 +173,7 @@ So to connect using ssh we need a permission of `400` but by default it will be 
 
 ```sh
 > ls -la # to see the permission of the pem file
-> chmod 400 ./scripts/hwsndbx.pem
+> chmod 400 ./scripts/hwsndbx.pem # same key for all 
 > ssh -i ./scripts/hwsndbx.pem ec2-user@<output_instance_ip>
 ```
 
@@ -181,7 +181,7 @@ Install `HDP` through docker,
 
 ```sh
 > docker info
-> cd ../../hdp-docker-sandbox/HDP_2.6.5
+> cd /tmp/hdp-docker-sandbox/HDP_2.6.5
 > sudo bash docker-deploy-hdp265.sh
 > docker ps
 > docker ps -a
@@ -190,7 +190,7 @@ Install `HDP` through docker,
 To restart the containers,
 
 ```sh
-> cd hdp-docker-sandbox
+> cd /tmp/hdp-docker-sandbox
 > sudo bash restart_docker.sh
 ```
 
@@ -294,20 +294,36 @@ In case you want a CNAME, you can add this line to your hosts file. Add `hostip`
 127.0.0.1 sandbox-hdp.hortonworks.com
 ```
 
-## Stop Instances
+## Pausing and Resuming Instances
+
+> ⚠️ Keep in mind though there arent any changes for a stopped instance, you may still incur charges for EBS storage and ElasticIP associated to the instances.
 
 Once created and you want to stop instances just execute,
 
 ```sh
-> terraform apply -target null_resource.stop_openvpn
-> terraform apply -target null_resource.stop_hadoop
+> cd /tmp/hdp-docker-sandbox
+> pause_docker.sh # pause the instance
+> cd hdp_instance
+> terraform output # get the id from output for hdp instance
+> aws ec2 stop-instances --instance-ids <instance_id> --profile edutf
+> bastion_host_openvpn
+> terraform output # get the id from output for openvpn instance
+> aws ec2 stop-instances --instance-ids <instance_id> --profile edutf
 ```
 
 Once created and you want later to reboot after a stop,
 
 ```sh
-> terraform apply -target null_resource.reboot_openvpn
-> terraform apply -target null_resource.reboot_hadoop
+> bastion_host_openvpn
+> terraform output # get the id from output for openvpn instance
+> aws ec2 start-instances --instance-ids <instance_id> --profile edutf
+> cd hdp_instance
+> terraform output # get the id from output for hdp instance
+> aws ec2 start-instances --instance-ids <instance_id> --profile edutf
+> cd terraform/hdp_instance
+> ssh -i ./scripts/hwsndbx.pem ec2-user@<instance_ip>
+> cd /tmp/hdp-docker-sandbox
+> resume_docker.sh # resume the instance
 ```
 
 ## Destroy
@@ -327,6 +343,7 @@ Once created and you want later to reboot after a stop,
 - [Look into terraform local-exec for stopping and starting server instances](https://stackoverflow.com/questions/57158310/how-to-restart-ec2-instance-using-terraform-without-destroying-them)
 - [Ambari REST Api to restart all services](https://community.cloudera.com/t5/Support-Questions/Ambari-REST-API-to-restart-all-services/td-p/172172)
 - [Ambari REST Api commands](https://community.cloudera.com/t5/Community-Articles/Ambari-Admin-Utility-Part-1/ta-p/246258)
+- [Solve PigTez Failure](https://community.cloudera.com/t5/Support-Questions/Pig-view-fail-with-tez-execution/td-p/201377)
 
 ## License
 

@@ -62,7 +62,7 @@ variable "aws_instance_connection_password" {
 
 variable "AppName" {
   description = "Application Name"
-  default     = "HortonWorksSandboxWebServer"
+  default     = "hdp_sandbox_server"
 }
 
 variable "HostIp" {
@@ -79,3 +79,4 @@ variable "KeyPairName" {
   description = "EC2 instance key pair name"
   default     = "hwsndbx"
 }
+

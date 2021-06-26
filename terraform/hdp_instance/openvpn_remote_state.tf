@@ -2,8 +2,8 @@
 data "terraform_remote_state" "openvpn_remote_state" {
   backend = "s3"
   config = {
-    bucket  = "terraform-hadoop-openvpn"
-    key     = "sandbox-openvpn/terraform.tfstate"
-    region  = "us-east-1"
+    bucket = "terraform-hadoop-openvpn"
+    key    = "sandbox-openvpn/terraform.tfstate"
+    region = "us-east-1"
   }
 }

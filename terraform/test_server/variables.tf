@@ -72,5 +72,5 @@ variable "KeyPairName" {
 
 variable "MyHostIp" {
   description = "Ip of my current personal computer for remote exec"
-  default     = "103.247.48.189"
+  default     = "3.229.17.159"
 }
