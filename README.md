@@ -296,7 +296,7 @@ In case you want a CNAME, you can add this line to your hosts file. Add `hostip`
 
 ## Pausing and Resuming Instances
 
-> ⚠️ Keep in mind though there arent any changes for a stopped instance, you may still incur charges for EBS storage and ElasticIP associated to the instances.
+> ⚠️ Keep in mind, though there aren't any changes for a stopped instance, you may still incur charges for EBS storage and ElasticIP associated to the instances.
 
 Once created and you want to stop instances just execute,
 
