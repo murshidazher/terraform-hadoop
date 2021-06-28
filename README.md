@@ -296,9 +296,9 @@ In case you want a CNAME, you can add this line to your hosts file. Add `hostip`
 
 ## Pausing and Resuming Instances
 
-> ⚠️ Keep in mind, though there aren't any changes for a stopped instance, you may still incur charges for EBS storage and ElasticIP associated to the instances.
+> ⚠️ Keep in mind, though there aren't any changes for a stopped instance, you may still incur charges for `EBS` storage and `ElasticIP` associated to the instances.
 
-Once created and you want to stop instances just execute,
+Once created and you want to `stop` instances just execute,
 
 ```sh
 > cd /tmp/hdp-docker-sandbox
@@ -311,7 +311,7 @@ Once created and you want to stop instances just execute,
 > aws ec2 stop-instances --instance-ids <instance_id> --profile edutf
 ```
 
-Once created and you want later to reboot after a stop,
+Once created and you want later to `reboot` after a stop,
 
 ```sh
 > bastion_host_openvpn
@@ -327,6 +327,8 @@ Once created and you want later to reboot after a stop,
 ```
 
 ## Destroy
+
+To destroy the terraform instance,
 
 ```sh
 > terraform destroy -auto-approve
