@@ -336,7 +336,7 @@ To destroy the terraform instance,
 
 ## References
 
-- Installation guide for [single cluster](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS).
+- Installation guide for [a single cluster HDP Installation](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS).
 - Installation guide for [multiple cluster nodes](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit).
 - To increase the [storage instance type](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs-ephemeral-and-root-block-devices).
 - [Maven and Java setup](https://linuxize.com/post/how-to-install-apache-maven-on-centos-7/)
