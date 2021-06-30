@@ -336,7 +336,7 @@ To destroy the terraform instance,
 
 ## References
 
-- Installation guide for [a single cluster HDP Installation](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS).
+- Installation guide for [a single cluster HDP installation](https://ruslanmv.com/blog/Cloudera-HDP-Sanbox-on-AWS).
 - Installation guide for [multiple cluster nodes](https://docs.google.com/document/d/1jsf8iU_mvcbhSqoh-VXGDxmHvpYcvsdn9rxbA0nj624/edit).
 - To increase the [storage instance type](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance#ebs-ephemeral-and-root-block-devices).
 - [Maven and Java setup](https://linuxize.com/post/how-to-install-apache-maven-on-centos-7/)
@@ -345,7 +345,7 @@ To destroy the terraform instance,
 - [Look into terraform local-exec for stopping and starting server instances](https://stackoverflow.com/questions/57158310/how-to-restart-ec2-instance-using-terraform-without-destroying-them)
 - [Ambari REST Api to restart all services](https://community.cloudera.com/t5/Support-Questions/Ambari-REST-API-to-restart-all-services/td-p/172172)
 - [Ambari REST Api commands](https://community.cloudera.com/t5/Community-Articles/Ambari-Admin-Utility-Part-1/ta-p/246258)
-- [Solve PigTez Failure](https://community.cloudera.com/t5/Support-Questions/Pig-view-fail-with-tez-execution/td-p/201377)
+- [Solve PigTez Failure on Ambari 2.6.5](https://community.cloudera.com/t5/Support-Questions/Pig-view-fail-with-tez-execution/td-p/201377)
 
 ## License
 
