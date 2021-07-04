@@ -88,16 +88,15 @@ Apply terraform script,
 
 ```sh
 > terraform plan
-> terraform apply -auto-approve 
+> terraform apply -auto-approve
 ```
 
 Optional: Apply terraform script with environment variables,
 
 ```sh
 > terraform plan -var-file=./env/dev.tfvars
-> terraform apply -auto-approve -var-file=./env/dev.tfvars 
+> terraform apply -auto-approve -var-file=./env/dev.tfvars
 ```
-
 
 ## OpenVPN - Bastion Host
 
@@ -135,6 +134,7 @@ Use all settings as default. And change the password
 ```
 
 Then go to the OpenVPN WebUI `https://<elastic-ip>:943`. Use username as `openvpn` and password configured in the terminal above.
+
 - In Configuration > VPN Settings > Routing > Enable `Should client Internet traffic be routed through the VPN?`
 - With this configuration, the VPN client IP address is translated before being presented to resources inside the VPC. That means the client’s original IP address is remapped to one belonging to the VPC IP address space.
 
@@ -173,7 +173,7 @@ So to connect using ssh we need a permission of `400` but by default it will be 
 
 ```sh
 > ls -la # to see the permission of the pem file
-> chmod 400 ./scripts/hwsndbx.pem # same key for all 
+> chmod 400 ./scripts/hwsndbx.pem # same key for all
 > ssh -i ./scripts/hwsndbx.pem ec2-user@<output_instance_ip>
 ```
 
@@ -245,8 +245,8 @@ Example data files and scripts to play with,
 > python RatingsBreakdown.p u.data
 > python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar u.data #mrjob manually copies the file to hdfs temp location and executes it
 > hostname -I | awk '{print $1}' # get the ip
-> python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar hdfs://172.18.0.2:8020/user/maria_dev/ml-100k/u.data 
-> python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar hdfs:///user/maria_dev/ml-100k/u.data 
+> python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar hdfs://172.18.0.2:8020/user/maria_dev/ml-100k/u.data
+> python RatingsBreakdown.py -r hadoop --hadoop-streaming-jar /usr/hdp/current/hadoop-mapreduce-client/hadoop-streaming.jar hdfs:///user/maria_dev/ml-100k/u.data
 ```
 
 #### If python 3.6 needed
@@ -256,7 +256,8 @@ Example data files and scripts to play with,
 > sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
 > sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
 > sudo update-alternatives  --set python /usr/bin/python3.6
-
+> command -v pip # see pip is installed
+> command -v pip3 # see pip3 installed
 ```
 
 Or just change the symbolic link,
@@ -286,7 +287,7 @@ Change the `ambari` password once you create the instance,
 In case you want a CNAME, you can add this line to your hosts file. Add `hostip` to the mac to use as a domain name locally, to save and exit out of nano editor `ctrl + o` > `enter` > `ctrl + x`
 
 ```sh
-> sudo nano /etc/hosts # add the ip and map to a host 
+> sudo nano /etc/hosts # add the ip and map to a host
 > sudo killall -HUP mDNSResponder # flush DNS cache
 ```
 
