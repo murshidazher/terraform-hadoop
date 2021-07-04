@@ -257,7 +257,7 @@ Example data files and scripts to play with,
 > sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
 > sudo update-alternatives  --set python /usr/bin/python3.6
 > command -v pip # see pip is installed
-> command -v pip3 # see pip3 installed
+> python3 -m pip
 ```
 
 Or just change the symbolic link,
