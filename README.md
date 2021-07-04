@@ -303,11 +303,11 @@ Once created and you want to `stop` instances just execute,
 
 ```sh
 > cd /tmp/hdp-docker-sandbox
-> pause_docker.sh # pause the instance
+> bash pause_docker.sh # pause the instance
 > cd hdp_instance
 > terraform output # get the id from output for hdp instance
 > aws ec2 stop-instances --instance-ids <instance_id> --profile edutf
-> bastion_host_openvpn
+> cd bastion_host_openvpn
 > terraform output # get the id from output for openvpn instance
 > aws ec2 stop-instances --instance-ids <instance_id> --profile edutf
 ```
@@ -315,7 +315,7 @@ Once created and you want to `stop` instances just execute,
 Once created and you want later to `reboot` after a stop,
 
 ```sh
-> bastion_host_openvpn
+> cd bastion_host_openvpn
 > terraform output # get the id from output for openvpn instance
 > aws ec2 start-instances --instance-ids <instance_id> --profile edutf
 > cd hdp_instance
@@ -324,7 +324,7 @@ Once created and you want later to `reboot` after a stop,
 > cd terraform/hdp_instance
 > ssh -i ./scripts/hwsndbx.pem ec2-user@<instance_ip>
 > cd /tmp/hdp-docker-sandbox
-> resume_docker.sh # resume the instance
+> bash resume_docker.sh # resume the instance
 ```
 
 ## Destroy
