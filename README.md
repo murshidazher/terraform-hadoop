@@ -156,6 +156,11 @@ Copy the Certificate, CA Bundle and Private Key to files.
 
 Login to your VPN access server GUI using the user `openvpn` and created on the server. Navigate to Settings > Web Server. From there, upload the Certificate, CA Bundle and Private Key files. Click validate and save if there are no errors.
 
+```sh
+> ssh root@<host>  "cat server.csr"|pbcopy 
+> ssh root@<host>  "cat server.key"|pbcopy 
+```
+
 ## HDP Instance
 
 Next, we will provision HDP as a spot instance if you need it as a readily-available instance change directory to ``.
