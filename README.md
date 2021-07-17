@@ -256,24 +256,7 @@ Example data files and scripts to play with,
 
 #### If python 3.6 needed
 
-```sh
-> yum install python36
-> sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-> sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 2
-> sudo update-alternatives  --set python /usr/bin/python3.6
-> command -v pip # see pip is installed
-> python3 -m pip
-```
-
-Or just change the symbolic link,
-
-```sh
-> cd /usr/bin
-> ls -lrth python*
-> unlink python
-> ln -s /usr/bin/python3.6 python
-> python --version
-```
+- Look into this [script](https://github.com/murshidazher/hdp-docker-sandbox/blob/main/temp_script/install_python3.sh)
 
 ## Security
 
