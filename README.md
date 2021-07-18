@@ -256,7 +256,7 @@ Example data files and scripts to play with,
 
 #### If python 3.6 needed
 
-- Look into this [script](https://github.com/murshidazher/hdp-docker-sandbox/blob/main/temp_script/install_python3.sh)
+Look into this [script](https://github.com/murshidazher/hdp-docker-sandbox/blob/main/temp_script/install_python3.sh)
 
 ## Security
 
