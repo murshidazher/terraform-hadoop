@@ -25,6 +25,7 @@
   - [Security](#security)
     - [Add Hosts Ip to Mac](#add-hosts-ip-to-mac)
   - [Pausing and Resuming Instances](#pausing-and-resuming-instances)
+    - [Spark Notebooks](#spark-notebooks)
   - [Destroy](#destroy)
   - [References](#references)
   - [License](#license)
@@ -313,6 +314,14 @@ Once created and you want later to `reboot` after a stop,
 > ssh -i ./scripts/hwsndbx.pem ec2-user@<instance_ip>
 > cd /tmp/hdp-docker-sandbox
 > bash resume_docker.sh # resume the instance
+```
+
+### Spark Notebooks
+
+```sh
+> ps -ef
+> kill -HUP <PID>
+> bash start_jupyter.sh spark
 ```
 
 ## Destroy
